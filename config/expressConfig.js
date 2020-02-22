@@ -9,6 +9,7 @@ app.use(express.json());
 
 app.use(cors());
 
+require('../services/devices');
 require('../routes/devices')(app);
 
 app.get(`/ping`, (req, res) => res.send('pong'));
