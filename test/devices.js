@@ -11,5 +11,6 @@ describe('Testing device service', () => {
         const result = deviceServices.sayHello();
 
         expect(result).to.be.equal('Hello');
+
     });
 });
