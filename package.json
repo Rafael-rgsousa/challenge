@@ -1,0 +1,12 @@
+{
+  "name": "bose-challenge",
+  "version": "1.0.0",
+  "description": "This project is an answer to the challenge of Bose",
+  "main": "index.js",
+  "author": "Rafael Gaudencio de Sousa",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
