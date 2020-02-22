@@ -1,4 +1,4 @@
-const sayHello = (req, res) => res.send('Hello');;
+const sayHello = () => 'Hello';
 
 module.exports = {
     sayHello,
