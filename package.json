@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon --inspect index.js",
-    "test": "mocha"
+    "test": "find ./test -name '*.js' | xargs mocha -R spec --exit"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

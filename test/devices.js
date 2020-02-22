@@ -6,11 +6,11 @@ const {
 
 describe('Testing device service', () => {
 
-    describe('Needs to say Hello', () => {
+    it('Needs to say Hello', (done) => {
 
         const result = deviceServices.sayHello();
 
         expect(result).to.be.equal('Hello');
-
+        done();
     });
 });
