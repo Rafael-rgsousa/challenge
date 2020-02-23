@@ -1,3 +1,6 @@
+
+const file = require('./file');
+
 const sayHello = () => 'Hello';
 
 const uploadFile = (file) => {
