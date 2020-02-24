@@ -1,12 +1,13 @@
-const fs = require('fs'),
-    es = require('event-stream'),
-    path = require('path'),
-    _ = require('lodash');
+const fs = require('fs'), // file api on NodeJs
+    es = require('event-stream'), // facilite to work with stream
+    path = require('path'), // facilite to resolve paths on node js
+    _ = require('lodash'); // super tool to work in nodejs
 
 const FILE_PATH = './resources/network.txt';
 
 /**
- * 
+ * @description This method work with file lazy loading and can work with big files
+ * The method read line by line clean the RAM after finish reading each line 
  */
 const readFile = async (filePath) => {
 
@@ -94,7 +95,7 @@ const makeNetworkRepresentaiton = async () => {
 }
 
 
-makeNetworkRepresentaiton();
+// makeNetworkRepresentaiton();
 
 module.exports = {
     makeNetworkRepresentaiton
