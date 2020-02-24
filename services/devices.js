@@ -12,6 +12,9 @@ const getPathsNode = (node) => {};
 const getHighestTime = (node) => {};
 const getLowestTime = (node) => {};
 
+const getFirstNode = async () => {
+    return file.getFirstNode();
+}
 
 module.exports = {
     sayHello,
@@ -19,5 +22,6 @@ module.exports = {
     getStartingNode,
     getPathsNode,
     getHighestTime,
-    getLowestTime
+    getLowestTime,
+    getFirstNode
 }

@@ -15,4 +15,26 @@ module.exports = app => {
             throw new Error('Failed to say Hello', err);
         }
     });
+
+
+    app.get('/starting-node', async (req, res) => {
+
+        try {
+
+            const firstNode = await devicesServices.getFirstNode();
+
+            res.json({
+                name: firstNode.origin || ''
+            });
+
+        } catch (err) {
+
+            const errorMessage = 'Failed to get the first node';
+            res.status(500).json({
+                message: errorMessage
+            });
+
+            throw new Error(errorMessage, err);
+        }
+    });
 }

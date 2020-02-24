@@ -52,8 +52,9 @@ const readFile = async (filePath) => {
  * @param {*} node 
  * @param {*} network 
  * @returns a node from network
+ * @private true
  */
-const getFirstNode = (nodePositon, network) => {
+const _getFirstNode = (nodePositon, network) => {
 
     const node = network[nodePositon];
 
@@ -66,9 +67,22 @@ const getFirstNode = (nodePositon, network) => {
     }
 
     // try again
-    return getFirstNode(nodePositon + 1, network);
+    return _getFirstNode(nodePositon + 1, network);
 }
 
+/**
+ * @description Get the name of the first node of the network
+ * @private false
+ * @returns { String }
+ */
+const getFirstNode = async () => {
+    const networkRelationship = await getNetworkFromFile(FILE_PATH);
+
+    const firstNode = _getFirstNode(0, networkRelationship);
+
+    return firstNode;
+
+}
 
 /**
  * @description get network from file
@@ -89,14 +103,16 @@ const makeNetworkRepresentaiton = async () => {
     // get network relationship from file
     const networkRelationship = await getNetworkFromFile(FILE_PATH);
 
-    const firstNode = getFirstNode(0, networkRelationship);
+    const firstNode = _getFirstNode(0, networkRelationship);
 
     const b = firstNode;
 }
 
 
+
 // makeNetworkRepresentaiton();
 
 module.exports = {
-    makeNetworkRepresentaiton
+    makeNetworkRepresentaiton,
+    getFirstNode,
 };
