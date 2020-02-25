@@ -18,15 +18,28 @@ describe('Testing device service', () => {
         done();
     });
 
-    it ('Needs to get the name of the first node', (done) => {
+    it('Needs to get the name of the first node', (done) => {
 
-            chai.request(app)
-                .get('/starting-node')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('name');
-                    done();
-                })
+        chai.request(app)
+            .get('/starting-node')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('name');
+                done();
+            });
+    });
+
+    it('Needs to get a list of paths beginning with the first node', (done) => {
+
+        chai.request(app)
+        .get('/paths/')
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('starting_node');
+            res.body.should.have.property('paths');
+            done();
         });
+    });
 });
