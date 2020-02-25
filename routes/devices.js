@@ -5,12 +5,28 @@ const devicesServices = require('../services/devices');
 const multer = require('../config/multer');
 
 module.exports = app => {
+
+    /**
+     * @swagger
+     * /devices/hello:
+     *   get:
+     *     description: It a endpoint to test application
+     *     produces:
+     *      - application/json
+     *     responses:
+     *       200:
+     *         description: message
+     *         schema:
+     *           type: object
+     */
     app.get(`${BASE_PATH}/hello`, (req, res) => {
 
         try {
 
             const response = devicesServices.sayHello();
-            res.send(response);
+            res.json({
+                message: response
+            });
 
         } catch (err) {
             res.status(500).json(err);
@@ -19,6 +35,19 @@ module.exports = app => {
     });
 
 
+     /**
+     * @swagger
+     * /starting-node:
+     *   get:
+     *     description: Get the name of the first node
+     *     produces:
+     *      - application/json
+     *     responses:
+     *       200:
+     *         description: node name
+     *         schema:
+     *           type: object
+     */
     app.get('/starting-node', async (req, res) => {
 
         try {
@@ -40,7 +69,27 @@ module.exports = app => {
         }
     });
 
-    app.put('/network', multer.upload.single(''), async (req, res) => {
+     /**
+     * @swagger
+     * /network:
+     *   put:
+     *     description: Upload a new Network 
+     *     consumes:
+     *      - application/x-www-form-urlencoded
+     *     schema:
+     *      type: object
+     *     parameters:
+     *      - in: formData
+     *        name: file
+     *        type: file
+     *        description: The file to upload.
+     *     responses:
+     *       200:
+     *         description: status
+     *         schema:
+     *           type: object
+     */
+    app.put('/network', multer.upload.single('file'), async (req, res) => {
 
         try {
 
