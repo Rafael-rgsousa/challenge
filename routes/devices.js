@@ -35,7 +35,7 @@ module.exports = app => {
     });
 
 
-     /**
+    /**
      * @swagger
      * /starting-node:
      *   get:
@@ -69,7 +69,7 @@ module.exports = app => {
         }
     });
 
-     /**
+    /**
      * @swagger
      * /network:
      *   put:
@@ -112,4 +112,187 @@ module.exports = app => {
         }
 
     });
+
+
+    /**
+     * @swagger
+     * /paths/{node}:
+     *   get:
+     *     description: Get the path beggining on the passed node
+     *     produces:
+     *      - application/json
+     *     responses:
+     *       200:
+     *         description: node name
+     *         schema:
+     *           type: object
+     */
+    app.get('/paths/:node', (req, res) => {
+
+        try {
+
+            const bal = req;
+
+        } catch (err) {
+
+            const errorMessage = 'Failed to get paths from node';
+            res.status(500).json({
+                message: errorMessage
+            });
+
+            throw new Error(errorMessage, err);
+        }
+    });
+
+
+    /**
+     * @swagger
+     * /paths:
+     *   get:
+     *     description: Get the path beggining from the first node
+     *     produces:
+     *      - application/json
+     *     responses:
+     *       200:
+     *         description: node name
+     *         schema:
+     *           type: object
+     */
+    app.get('/paths', (req, res) => {
+
+        try {
+
+            const bal = req;
+
+        } catch (err) {
+
+            const errorMessage = 'Failed to get paths from node';
+            res.status(500).json({
+                message: errorMessage
+            });
+
+            throw new Error(errorMessage, err);
+        }
+    });
+
+
+
+    /**
+     * @swagger
+     * /highest-time/{node}:
+     *   get:
+     *     description: Get the path beggining on the passed node
+     *     produces:
+     *      - application/json
+     *     responses:
+     *       200:
+     *         description: node name
+     *         schema:
+     *           type: object
+     */
+    app.get('/highest-time/:node', (req, res) => {
+
+        try {
+
+        } catch (err) {
+
+            const errorMessage = 'Failed to get paths from node';
+            res.status(500).json({
+                message: errorMessage
+            });
+
+            throw new Error(errorMessage, err);
+        }
+    });
+
+
+
+
+    /**
+     * @swagger
+     * /highest-time:
+     *   get:
+     *     description: Get the path beggining on the first node
+     *     produces:
+     *      - application/json
+     *     responses:
+     *       200:
+     *         description: node name
+     *         schema:
+     *           type: object
+     */
+    app.get('/highest-time', (req, res) => {
+
+        try {
+
+        } catch (err) {
+
+            const errorMessage = 'Failed to get paths from node';
+            res.status(500).json({
+                message: errorMessage
+            });
+
+            throw new Error(errorMessage, err);
+        }
+    });
+
+
+    /**
+     * @swagger
+     * /lowest-time/{node}:
+     *   get:
+     *     description: Get the path beggining on the first node
+     *     produces:
+     *      - application/json
+     *     responses:
+     *       200:
+     *         description: node name
+     *         schema:
+     *           type: object
+     */
+    app.get('/lowest-time/:node', (req, res) => {
+
+        try {
+
+        } catch (err) {
+
+            const errorMessage = 'Failed to get paths from node';
+            res.status(500).json({
+                message: errorMessage
+            });
+
+            throw new Error(errorMessage, err);
+        }
+    });
+
+
+    /**
+     * @swagger
+     * /lowest-time:
+     *   get:
+     *     description: Get the path beggining on the first node
+     *     produces:
+     *      - application/json
+     *     responses:
+     *       200:
+     *         description: node name
+     *         schema:
+     *           type: object
+     */
+    app.get('/lowest-time', (req, res) => {
+
+        try {
+
+        } catch (err) {
+
+            const errorMessage = 'Failed to get paths from node';
+            res.status(500).json({
+                message: errorMessage
+            });
+
+            throw new Error(errorMessage, err);
+        }
+    });
+
+
 }
