@@ -7,12 +7,11 @@ const uploadFile = (file) => {
 
 }
 
-const getStartingNode = () => {};
 const getPathsNode = (node) => {};
 const getHighestTime = (node) => {};
 const getLowestTime = (node) => {};
 
-const getFirstNode = async () => {
+const getStartingNode = async () => {
     return file.getFirstNode();
 }
 
@@ -23,5 +22,4 @@ module.exports = {
     getPathsNode,
     getHighestTime,
     getLowestTime,
-    getFirstNode
 }
