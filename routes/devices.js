@@ -2,6 +2,8 @@ const BASE_PATH = '/devices';
 
 const devicesServices = require('../services/devices');
 
+const multer = require('../config/multer');
+
 module.exports = app => {
     app.get(`${BASE_PATH}/hello`, (req, res) => {
 
@@ -21,7 +23,7 @@ module.exports = app => {
 
         try {
 
-            const firstNode = await devicesServices.getFirstNode();
+            const firstNode = await devicesServices.getStartingNode();
 
             res.json({
                 name: firstNode.origin || ''
@@ -36,5 +38,29 @@ module.exports = app => {
 
             throw new Error(errorMessage, err);
         }
+    });
+
+    app.put('/network', multer.upload.single(''), async (req, res) => {
+
+        try {
+
+            const file = req.file;
+
+            if (file && file.filename) {
+                res.json({
+                    status: 'success'
+                });
+            }
+
+        } catch (err) {
+
+            const errorMessage = 'Failed to upload file';
+            res.status(500).json({
+                message: errorMessage
+            });
+
+            throw new Error(errorMessage, err);
+        }
+
     });
 }
