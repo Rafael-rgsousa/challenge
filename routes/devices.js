@@ -164,7 +164,7 @@ module.exports = app => {
      * @swagger
      * /paths:
      *   get:
-     *     description: Get the path beggining from the first node
+     *     description: Get the path beggining from the first node. This may take time but it works. Try localhost
      *     produces:
      *      - application/json
      *     responses:
@@ -243,7 +243,7 @@ module.exports = app => {
      * @swagger
      * /highest-time:
      *   get:
-     *     description: Get the path beggining on the first node
+     *     description: Get the path beggining on the first node. This may take time but it works. Try localhost
      *     produces:
      *      - application/json
      *     responses:
@@ -322,7 +322,7 @@ module.exports = app => {
      * @swagger
      * /lowest-time:
      *   get:
-     *     description: Get the path beggining on the first node
+     *     description: Get the path beggining on the first node. This may take time but it works. Try localhost
      *     produces:
      *      - application/json
      *     responses:

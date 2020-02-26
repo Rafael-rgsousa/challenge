@@ -1,5 +1,9 @@
 const fileService = require('./file');
 
+const fs = require('fs');
+
+const  path = require('path');
+
 const questions = ['What was the token used to generate the network file?', 'What is the name of starting node?', 'What are the paths in the network and their respective travel time?',
     'What is the path with more hops?', 'What is the path with the biggest travel time?', 'What is the path with the shortest travel time?', 'How will you API perform if the file that describes the network has 1GB. And 10GB?',
     'What documentation did you consult to accomplish your assignment?', 'How much time did you spent developing your assignment?', 'If you had unlimited time, what would you do differently?'
@@ -49,29 +53,29 @@ const getAnswersActions = (item) => {
     return answersQuestionSwitch[item];
 }
 
+/**
+ * 
+ * @param {*} name 
+ */
+const readFile = async () => {
+    // const path = `${__dirname}/resources/${name}.json`;
+
+    const filePath = path.resolve('./resources/answers.json');
+
+    const result = await fs.readFileSync(filePath, 'utf8');
+
+    return JSON.parse(result);
+};
 
 /**
  * 
  */
 const answer = async () => {
 
-    const answers = [];
+    const result = await readFile('answers');
 
-    for (let i = 0; i < 10; i++) {
-
-        const action = getAnswersActions(i + 1);
-
-        const result = await action();
-
-        answers.push({
-            question: questions[i],
-            answer: result
-        });
-    }
-
-    return answers;
+    return result;
 }
-
 
 module.exports = {
     answer
