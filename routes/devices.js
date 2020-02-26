@@ -177,6 +177,9 @@ module.exports = app => {
 
         try {
 
+            // this way can be very lazy because it needs to search a lot
+            req.setTimeout(600000);
+
             const result = await devicesServices.getPathsNode(null);
 
             res.json(result);
@@ -255,6 +258,9 @@ module.exports = app => {
     app.get('/highest-time', async (req, res) => {
 
         try {
+
+            // this way can be very lazy because it needs to search a lot
+            req.setTimeout(600000);
 
             const result = await devicesServices.getHighestTime(null);
 
@@ -335,6 +341,9 @@ module.exports = app => {
 
         try {
 
+            // this way can be very lazy because it needs to search a lot
+            req.setTimeout(600000);
+
             const result = await devicesServices.getLowestTime(null);
 
             res.json(result);
@@ -355,7 +364,7 @@ module.exports = app => {
      * @swagger
      * /questions:
      *   get:
-     *     description: It is an endpoint to answer the questions asked in the PDF
+     *     description: It is an endpoint to answer the questions asked in the PDF. It is static because the time of the execution.
      *     produces:
      *      - application/json
      *     responses:

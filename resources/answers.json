@@ -65,5 +65,5 @@
     "answer": "About 20 hours"
 }, {
     "question": "If you had unlimited time, what would you do differently?",
-    "answer": ["Refactory and use more Ramda (https://www.npmjs.com/package/ramda) to use more FP on javascript", "Refactory the methods that make the Deep path from the node"]
+    "answer": ["Refactory and use more Ramda (https://www.npmjs.com/package/ramda) to use more FP on javascript", "Refactory the methods that make the Deep path from the node", "Use a faster file module or rewrite in another language."]
 }]
