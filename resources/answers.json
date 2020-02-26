@@ -54,10 +54,10 @@
         "description": "Chai - BDD/TDD assertion for node",
         "url": "https://www.npmjs.com/package/chai"
     }, {
-        "description": "Mocha - Javascript test framwork",
+        "description": "Mocha - Javascript test framework",
         "url": "https://www.npmjs.com/package/mocha"
     }, {
-        "description": "Express - Frameowk to make application server with Node JS",
+        "description": "Express - Framework to make application server with Node JS",
         "url": "https://www.npmjs.com/package/express"
     }]
 }, {
