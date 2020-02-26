@@ -14,6 +14,11 @@ const options = {
             title: 'Bose Challenge - Backend',
             version: '1.0.0',
             description: 'Challenge to be a Backend developer at Bose',
+            "contact": {
+                "name": "Rafael Gaudêncio de Sousa",
+                "url": "https://www.linkedin.com/in/rg-sousa/",
+                "email": "rafael.rgsousa@gmail.com"
+            },
         },
         basePath: '/',
     },
@@ -23,7 +28,7 @@ const options = {
 
 const specs = swaggerJsdoc(options);
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/', swaggerUi.serve, swaggerUi.setup(specs));
 
 
 app.listen(port, () => {
