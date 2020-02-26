@@ -142,7 +142,7 @@ module.exports = app => {
 
         try {
 
-            const result = await devicesServices.getPathsNode(node);
+            const result = await devicesServices.getPathsNode(node.toUpperCase());
 
             res.json(result);
 
@@ -221,7 +221,7 @@ module.exports = app => {
 
         try {
 
-            const result = await devicesServices.getHighestTime(node);
+            const result = await devicesServices.getHighestTime(node.toUpperCase());
 
             res.json(result);
 
@@ -299,7 +299,7 @@ module.exports = app => {
 
         try {
 
-            const result = await devicesServices.getLowestTime(node);
+            const result = await devicesServices.getLowestTime(node.toUpperCase());
 
             res.json(result);
 
