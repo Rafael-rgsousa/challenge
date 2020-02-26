@@ -5,7 +5,10 @@ const questions = ['What was the token used to generate the network file?', 'Wha
     'What documentation did you consult to accomplish your assignment?', 'How much time did you spent developing your assignment?', 'If you had unlimited time, what would you do differently?'
 ];
 
-
+/**
+ * 
+ * @param {*} item 
+ */
 const getAnswersActions = (item) => {
     const answersQuestionSwitch = {
         1: () => fileService.getStartingNode(),
@@ -47,13 +50,14 @@ const getAnswersActions = (item) => {
 }
 
 
+/**
+ * 
+ */
 const answer = async () => {
-
 
     const answers = [];
 
     for (let i = 0; i < 10; i++) {
-
 
         const action = getAnswersActions(i + 1);
 
@@ -64,7 +68,6 @@ const answer = async () => {
             answer: result
         });
     }
-
 
     return answers;
 }
