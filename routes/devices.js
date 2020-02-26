@@ -121,17 +121,30 @@ module.exports = app => {
      *     description: Get the path beggining on the passed node
      *     produces:
      *      - application/json
+     *     parameters:
+     *      - name: node
+     *        in: path
+     *        description: The name of the starting node
+     *        required: true
+     *        schem:
+     *        type: string
      *     responses:
      *       200:
      *         description: node name
      *         schema:
      *           type: object
      */
-    app.get('/paths/:node', (req, res) => {
+    app.get('/paths/:node', async (req, res) => {
+
+        const {
+            node
+        } = req.params;
 
         try {
 
-            const bal = req;
+            const result = await devicesServices.getPathsNode(node);
+
+            res.json(result);
 
         } catch (err) {
 
@@ -162,7 +175,9 @@ module.exports = app => {
 
         try {
 
-            const bal = req;
+            const result = devicesServices.getPathsNode(null);
+
+            res.json(result);
 
         } catch (err) {
 
@@ -184,6 +199,13 @@ module.exports = app => {
      *     description: Get the path beggining on the passed node
      *     produces:
      *      - application/json
+     *     parameters:
+     *      - name: node
+     *        in: path
+     *        description: The name of the starting node
+     *        required: true
+     *        schem:
+     *        type: string
      *     responses:
      *       200:
      *         description: node name
@@ -192,7 +214,16 @@ module.exports = app => {
      */
     app.get('/highest-time/:node', (req, res) => {
 
+        const {
+            node
+        } = req.params;
+
+
         try {
+
+            const result = devicesServices.getHighestTime(node);
+
+            res.json(result);
 
         } catch (err) {
 
@@ -204,8 +235,6 @@ module.exports = app => {
             throw new Error(errorMessage, err);
         }
     });
-
-
 
 
     /**
@@ -244,6 +273,13 @@ module.exports = app => {
      *     description: Get the path beggining on the first node
      *     produces:
      *      - application/json
+     *     parameters:
+     *      - name: node
+     *        in: path
+     *        description: The name of the starting node
+     *        required: true
+     *        schem:
+     *        type: string
      *     responses:
      *       200:
      *         description: node name
@@ -252,7 +288,16 @@ module.exports = app => {
      */
     app.get('/lowest-time/:node', (req, res) => {
 
+        const {
+            node
+        } = req.params;
+
         try {
+
+            const result = devicesServices.getLowestTime(node);
+
+            res.json(result);
+
 
         } catch (err) {
 
@@ -282,6 +327,10 @@ module.exports = app => {
     app.get('/lowest-time', (req, res) => {
 
         try {
+
+            const result = devicesServices.getLowestTime(null);
+
+            res.json(result);
 
         } catch (err) {
 
