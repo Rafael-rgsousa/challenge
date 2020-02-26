@@ -2,6 +2,8 @@ const BASE_PATH = '/devices';
 
 const devicesServices = require('../services/devices');
 
+const questions = require('../services/questions');
+
 const multer = require('../config/multer');
 
 module.exports = app => {
@@ -10,7 +12,7 @@ module.exports = app => {
      * @swagger
      * /devices/hello:
      *   get:
-     *     description: It a endpoint to test application
+     *     description: It is an endpoint to test the application
      *     produces:
      *      - application/json
      *     responses:
@@ -171,11 +173,11 @@ module.exports = app => {
      *         schema:
      *           type: object
      */
-    app.get('/paths', (req, res) => {
+    app.get('/paths', async (req, res) => {
 
         try {
 
-            const result = devicesServices.getPathsNode(null);
+            const result = await devicesServices.getPathsNode(null);
 
             res.json(result);
 
@@ -345,6 +347,34 @@ module.exports = app => {
             });
 
             throw new Error(errorMessage, err);
+        }
+    });
+
+
+    /**
+     * @swagger
+     * /questions:
+     *   get:
+     *     description: It is an endpoint to answer the questions asked in the PDF
+     *     produces:
+     *      - application/json
+     *     responses:
+     *       200:
+     *         description: message
+     *         schema:
+     *           type: object
+     */
+    app.get(`/questions`, async (req, res) => {
+
+        try {
+
+            const result = await questions.answer();
+
+            res.json(result);
+
+        } catch (err) {
+            res.status(500).json(err);
+            throw new Error('Failed answer the questions', err);
         }
     });
 

@@ -40,7 +40,6 @@ const readFile = async (filePath) => {
                     console.log('Read entire file.');
                     // sort by target
                     networkRelationship.sort((a, b) => (a.target > b.target) ? 1 : ((b.target > a.target) ? -1 : 0));
-                    networkRelationship.map((item, index) => item.position = index);
                     resolve(networkRelationship);
                 })
             )
@@ -97,7 +96,7 @@ const getNetworkFromFile = async (filePath) => {
  * @private false
  * @returns { String }
  */
-const getFirstNode = async (networkRelationship) => {
+const getFirstNode = (networkRelationship) => {
     // const networkRelationship = await getNetworkFromFile(FILE_PATH);
 
     const firstNode = _getFirstNode(0, networkRelationship);
