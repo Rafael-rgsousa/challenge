@@ -2,7 +2,6 @@ const file = require('./file');
 
 const sayHello = () => 'Hello';
 
-
 /**
  * 
  * @param {*} node 

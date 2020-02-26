@@ -1,7 +1,6 @@
 const fs = require('fs'), // file api on NodeJs
     es = require('event-stream'), // facilite to work with stream
-    path = require('path'), // facilite to resolve paths on node js
-    _ = require('lodash'); // super tool to work in nodejs
+    path = require('path'); // facilite to resolve paths on node js
 
 const FILE_PATH = './resources/network.txt';
 
@@ -140,7 +139,6 @@ const getNextPathByNodeName = (nodeName, network) => {
 
     if (node.target) {
 
-
         const childrenResult = getNodeChildren(node, network);
 
         nodeChildren = childrenResult;
@@ -254,9 +252,10 @@ const getDeepPathFromNode = (result, network) => {
         };
 
     }
+
+    // deep children identification
     result.path.map((item) => {
         if (item.target) {
-            /// TALVEZ AQUI ESTA O PROBLEMA
             const itemPathResult = getPathFromNode(item.target, network);
 
             item.path = itemPathResult.path;
@@ -264,11 +263,11 @@ const getDeepPathFromNode = (result, network) => {
             if (!item.path) {
                 return {
                     origin: result.origin,
-                    // target: ,
                     latency: 0,
                 };
 
             }
+
             item.path.map((itemPosition) => {
                 if (itemPosition.target) {
                     const itemPositionResult = getPathFromNode(itemPosition.target, network);
@@ -301,7 +300,22 @@ const flatMap = ({
 }) => [origin].concat(...path.map(flatMap));
 
 
-const makeNodeTree = (node = null, network, originalData = false) => {
+/**
+ * @description flat node tree by Latency
+ * @param {node} param0 
+ */
+const flatMapByLatency = ({
+    latency,
+    path = []
+}) => [latency].concat(...path.map(flatMapByLatency));
+
+
+/**
+ * 
+ * @param {*} node 
+ * @param {*} network 
+ */
+const makeNodeTree = (node = null, network) => {
 
     if (!node) {
         const first = getFirstNode(network);
@@ -313,10 +327,8 @@ const makeNodeTree = (node = null, network, originalData = false) => {
 
     const firstLevel = result.path;
 
-    // console.time('start')
     const aggregatedResult = [];
 
-    const originalResultList = [];
 
     firstLevel.map((item) => {
 
@@ -327,33 +339,23 @@ const makeNodeTree = (node = null, network, originalData = false) => {
         // get node path latency
         pathLatency += positonResult.path.reduce(countLatency, 0);
 
-        // pegar todos os filhos do primeiro node
+        // get all children of the first node
         positonResult = getDeepPathFromNode(positonResult, network);
 
+        // make an array with one dimesion of nodes of the path
         const flatedArray = flatMap(positonResult);
 
+        // make the result
         aggregatedResult.push({
             latency: pathLatency,
             path: [...new Set(flatedArray)]
         });
-
-        if (originalData) {
-            originalResultList.push(positonResult);
-        }
     });
 
-
-    if (!originalData) {
-
-        return {
-            starting_node: node,
-            paths: aggregatedResult
-        }
+    return {
+        starting_node: node,
+        paths: aggregatedResult
     }
-
-
-    return originalResultList;
-
 
 }
 
@@ -373,19 +375,7 @@ const getPathByNode = async (nodeName) => {
     return nodePath;
 }
 
-/**
- * 
- */
-const getMin = (data) => {
-    return data.reduce((min, p) => p.y < min ? p.y : min, data[0].y);
-}
 
-/**
- * 
- */
-const getMax = (data) => {
-    return data.reduce((max, p) => p.y > max ? p.y : max, data[0].y);
-}
 
 /**
  * 
@@ -393,27 +383,57 @@ const getMax = (data) => {
  */
 const getHighestTime = async (nodeName) => {
 
+    // get the data from file
     const networkRelationship = await getNetworkFromFile(FILE_PATH);
 
-    const nodePath = makeNodeTree(nodeName, networkRelationship, true);
+    // make the tree from the node
+    const nodePath = makeNodeTree(nodeName, networkRelationship, false);
 
-    const max = getMax(nodePath)
-    const a = [];
+    // sort DESC by latency valye
+    nodePath.paths.sort((a, b) => (a.latency < b.latency) ? 1 : ((b.latency < a.latency) ? -1 : 0));
+
+    // get selected node
+    const selectedNode = nodePath.paths[0];
+
+    return {
+        latency: selectedNode.latency,
+        path: selectedNode.path
+    }
 }
-
-getHighestTime('SBZG');
 
 /**
  * 
  * @param {*} nodeName 
  */
 const getLowestTime = async (nodeName) => {
-    const nodePath = await getPathByNode(nodeName);
-}
 
-const getStartingNode = async () => {
+    // get the data from file
     const networkRelationship = await getNetworkFromFile(FILE_PATH);
 
+    // make tree from the node
+    const nodePath = makeNodeTree(nodeName, networkRelationship, false);
+
+    // sort ASC by latency valye
+    nodePath.paths.sort((a, b) => (a.latency > b.latency) ? 1 : ((b.latency > a.latency) ? -1 : 0));
+
+    // get selected node
+    const selectedNode = nodePath.paths[0];
+
+    return {
+        latency: selectedNode.latency,
+        path: selectedNode.path
+    }
+}
+
+/**
+ * 
+ */
+const getStartingNode = async () => {
+
+    // ge tthe data from the file
+    const networkRelationship = await getNetworkFromFile(FILE_PATH);
+
+    // get the first node
     const result = getFirstNode(networkRelationship);
 
     return result;

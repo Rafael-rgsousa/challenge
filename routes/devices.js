@@ -212,7 +212,7 @@ module.exports = app => {
      *         schema:
      *           type: object
      */
-    app.get('/highest-time/:node', (req, res) => {
+    app.get('/highest-time/:node', async (req, res) => {
 
         const {
             node
@@ -221,7 +221,7 @@ module.exports = app => {
 
         try {
 
-            const result = devicesServices.getHighestTime(node);
+            const result = await devicesServices.getHighestTime(node);
 
             res.json(result);
 
@@ -250,9 +250,14 @@ module.exports = app => {
      *         schema:
      *           type: object
      */
-    app.get('/highest-time', (req, res) => {
+    app.get('/highest-time', async (req, res) => {
 
         try {
+
+            const result = await devicesServices.getHighestTime(null);
+
+            res.json(result);
+
 
         } catch (err) {
 
@@ -286,7 +291,7 @@ module.exports = app => {
      *         schema:
      *           type: object
      */
-    app.get('/lowest-time/:node', (req, res) => {
+    app.get('/lowest-time/:node', async (req, res) => {
 
         const {
             node
@@ -294,7 +299,7 @@ module.exports = app => {
 
         try {
 
-            const result = devicesServices.getLowestTime(node);
+            const result = await devicesServices.getLowestTime(node);
 
             res.json(result);
 
@@ -324,11 +329,11 @@ module.exports = app => {
      *         schema:
      *           type: object
      */
-    app.get('/lowest-time', (req, res) => {
+    app.get('/lowest-time', async (req, res) => {
 
         try {
 
-            const result = devicesServices.getLowestTime(null);
+            const result = await devicesServices.getLowestTime(null);
 
             res.json(result);
 
