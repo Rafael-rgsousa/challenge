@@ -11,9 +11,9 @@ const options = {
     swaggerDefinition: {
         // Like the one described here: https://swagger.io/specification/#infoObject
         info: {
-            title: 'Bose Challenge - Backend',
+            title: 'Challenge - Backend',
             version: '1.0.0',
-            description: 'Challenge to be a Backend developer at Bose',
+            description: 'Challenge to be a Backend developer',
             "contact": {
                 "name": "Rafael Gaudêncio de Sousa",
                 "url": "https://www.linkedin.com/in/rg-sousa/",

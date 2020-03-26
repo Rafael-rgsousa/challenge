@@ -1,7 +1,7 @@
 {
-  "name": "bose-challenge",
+  "name": "challenge",
   "version": "1.0.0",
-  "description": "This project is an answer to the challenge of Bose",
+  "description": "This project is an answer to the challenge",
   "main": "index.js",
   "author": "Rafael Gaudencio de Sousa",
   "license": "MIT",

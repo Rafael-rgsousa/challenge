@@ -1,14 +1,9 @@
-# Bose Challenge - Backend
-
-# Playground
-You can also use the web UI based on Swagger to see the API documentation on this URL: https://bose-challenge.herokuapp.com/
+# Challenge - Backend
 
 # Requirements
 
 > You need to have Node JS 10+ (https://nodejs.org/en/)
 # Steps
->>> git clone https://github.com/Rafael-rgsousa/bose-challenge
->>> cd ./bose-challenge
 >>> npm install 
 >>> npm run start to run application
 
